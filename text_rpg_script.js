@@ -6,7 +6,9 @@ const exit_btn = document.getElementById("exit-btn");
 
 
 
-document
+story_btn.addEventListener("click", () => {
+    window.location.href = "./scenes/play_solo.html";
+})
 
 
 
