@@ -1,15 +1,19 @@
 
 
-const story_btn = document.getElementById("play-game-btn");
+const solo_btn = document.getElementById("play-game-btn");
 const versus_btn = document.getElementById("local-versus-btn");
 const exit_btn = document.getElementById("exit-btn");
+const solo_main_menu_btn = document.getElementById("story-main-menu-btn")
 
 
 
-story_btn.addEventListener("click", () => {
+solo_btn.addEventListener("click", () => {
     window.location.href = "./scenes/play_solo.html";
 })
 
+solo_main_menu_btn.addEventListener("click", () => {
+    window.location.href = "text_rpg.html"
+})
 
 
 
