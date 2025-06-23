@@ -7,22 +7,27 @@ const solo_main_menu_btn = document.getElementById("story-main-menu-btn")
 
 
 
-solo_btn.addEventListener("click", () => {
-    window.location.href = "./scenes/play_solo.html";
-})
 
-solo_main_menu_btn.addEventListener("click", () => {
-    window.location.href = "text_rpg.html"
-})
+if (window.location.pathname.endsWith("text_rpg.html")) {
+    solo_btn.addEventListener("click", () => {
+        window.location.href = "./scenes/play_solo.html";
+    });
+}
+else if (window.location.pathname.endsWith("play_solo.html")) {
+    solo_main_menu_btn.addEventListener("click", () => {
+        window.close();
+        window.location.href = "../text_rpg.html";
+    });
 
+}; 
 
 
 exit_btn.addEventListener("click", () => {
     const confirm_exit = confirm("Are you sure?");
     if (confirm_exit){
-        document.close()
+        window.close()
     }
     else {
         return
     }
-})
+});
