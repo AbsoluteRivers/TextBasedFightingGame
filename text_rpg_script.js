@@ -10,13 +10,13 @@ const solo_main_menu_btn = document.getElementById("story-main-menu-btn")
 
 if (window.location.pathname.endsWith("text_rpg.html")) {
     solo_btn.addEventListener("click", () => {
-        window.location.href = "./scenes/play_solo";
+        window.location.href = "./scenes/play_solo.html";
     });
 }
 else if (window.location.pathname.endsWith("play_solo.html")) {
     solo_main_menu_btn.addEventListener("click", () => {
         window.close();
-        window.location.href = "../";
+        window.location.href = "../text_rpg.html";
     });
 
 }; 
