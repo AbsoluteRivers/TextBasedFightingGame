@@ -1,0 +1,27 @@
+:root {
+    --green-btn: #04AA6D;
+    --blue-btn: #008CBA;
+    --red-btn: #F44336;
+    --light-gray-btn: #e7e7e7;
+    --black-btn: #555555;
+    --white-txt: #ffffff;
+    --black-txt: #000000;
+    --red-txt: #ff0000;
+    --yellow-txt: #ffff00;
+    --silver: #c0c0c0;
+    --orange: #ff7500;
+}
+
+#title-header {
+    text-align: center;
+}
+
+.main-menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 2rem;
+    text-align: center;
+
+}
+
