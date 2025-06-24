@@ -16,3 +16,4 @@
 - Utilized DOM manipulation for calling separate html using main menu button  
 - Updated CSS file for stylesheet  
   *Note: CSS selectors don't need ";" as and end, only objects and parameters within the selectors*  
+//- Hosted a github page for th textgame//  
