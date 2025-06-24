@@ -12,6 +12,9 @@ if (window.location.pathname.endsWith("text_rpg.html")) {
     solo_btn.addEventListener("click", () => {
         window.location.href = "./scenes/play_solo.html";
     });
+    versus_btn.addEventListener("click", () => {
+        window.location.href = "./scenes/play_versus.html";
+    });
 }
 else if (window.location.pathname.endsWith("play_solo.html")) {
     solo_main_menu_btn.addEventListener("click", () => {
@@ -19,7 +22,13 @@ else if (window.location.pathname.endsWith("play_solo.html")) {
         window.location.href = "../text_rpg.html";
     });
 
-}; 
+}
+else if (window.location.pathname.endsWith("play_versus.html")) {
+    solo_main_menu_btn.addEventListener("click", () => {
+        window.close();
+        window.location.href = "../text_rpg.html";
+    });
+}
 
 
 exit_btn.addEventListener("click", () => {
