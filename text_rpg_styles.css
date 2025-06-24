@@ -25,3 +25,15 @@
 
 }
 
+.main-btn {
+    margin: 20px;
+    font-size: 18px;
+
+}
+
+
+button {
+    border-color: var(--blue-btn);
+    border-radius: 0 20px 0 20px;
+    padding: 0 1rem 0 1rem;
+}
