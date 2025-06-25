@@ -8,8 +8,13 @@
     --black-txt: #000000;
     --red-txt: #ff0000;
     --yellow-txt: #ffff00;
+    --blue-txt: #004DDf;
     --silver: #c0c0c0;
     --orange: #ff7500;
+}
+
+body {
+    margin: 1rem 20px 1rem 20px;
 }
 
 #title-header {
@@ -23,6 +28,12 @@
     height: 2rem;
     text-align: center;
 
+}
+
+.btn-area {
+    display: grid;
+    position: absolute;
+    right: 20px;
 }
 
 .main-btn {
@@ -43,17 +54,36 @@ button {
     position: absolute;
     vertical-align: auto;
     padding: 5px 0 5px 0;
+    margin-top: 2rem;
 }
 
 .stats-p2, .stats-pc{
-    visibility: hidden;
+    visibility: visible;
     display: grid;
     position: absolute;
     vertical-align: auto;
-    right: 0;
+    right: 20px;
+    margin-top: 2rem;
 }
 
 .stat {
     padding: 3px 0 3px 0;
     
+}
+
+.bar {
+    width: 10rem;
+    height: 12px;
+}
+
+#health-bar {
+    background-color: var(--red-btn);
+}
+
+#shield-bar {
+    background-color: var(--yellow-txt);
+}
+
+#mana-bar {
+    background-color: var(--blue-txt);
 }
