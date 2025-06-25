@@ -11,7 +11,7 @@ This is a text based fighting game which uses frontend languages such as HTML/CS
 ## Features
 - Three-Style Fighting System (Rock-Paper-Scissors)  
 - 1 or 2 Player Integration  
-- Inventory Use  
+
 
 ---
 
@@ -27,3 +27,4 @@ This is a text based fighting game which uses frontend languages such as HTML/CS
 
 ## Planned Features
 - Story and World Building  
+- Inventory Use  
