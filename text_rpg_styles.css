@@ -11,6 +11,8 @@
     --blue-txt: #004DDf;
     --silver: #c0c0c0;
     --orange: #ff7500;
+    --light-red: #CD004F;
+    --light-blue: #006fed;
 }
 
 body {
@@ -58,7 +60,7 @@ button {
 }
 
 .stats-p2, .stats-pc{
-    visibility: visible;
+    visibility: hidden;
     display: grid;
     position: absolute;
     vertical-align: auto;
@@ -72,12 +74,15 @@ button {
 }
 
 .bar {
-    width: 10rem;
-    height: 12px;
+    width: 18rem;
+    height: 1rem;
+    border: 1px solid black;
+    border-radius: 3px;
+    font-size: 1rem;
 }
 
 #health-bar {
-    background-color: var(--red-btn);
+    background-color: var(--light-red);
 }
 
 #shield-bar {
@@ -85,5 +90,5 @@ button {
 }
 
 #mana-bar {
-    background-color: var(--blue-txt);
+    background-color: var(--light-blue);
 }
