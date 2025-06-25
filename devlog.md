@@ -17,3 +17,7 @@
 - Updated CSS file for stylesheet  
   *Note: CSS selectors don't need ";" as and end, only objects and parameters within the selectors*  
 //- Hosted a github page for th textgame//  
+- Provided versus scene interface  
+- Made main menu button function the same in both solo and versus scenes  
+- Improved visibility for versus stats  
+
