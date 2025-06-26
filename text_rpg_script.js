@@ -7,6 +7,23 @@ const main_menu_btn = document.getElementById("story-main-menu-btn");
 const return_close_btn = document.getElementById("return-close");
 const choice_p2 = document.getElementById("choice-p2");
 const choice_pc = document.getElementById("choice-pc");
+const p2status = document.getElementById("stats-p2-id");
+const pcstatus = document.getElementById("stats-pc-id");
+
+let choice1vpc = true;
+
+
+function p2_choice(){
+    localStorage.setItem("choice1vpc", "false");
+    window.location.href = "./scenes/play_versus.html";
+    
+
+};
+
+function pc_choice(){
+    localStorage.setItem("choice1vpc", "true");
+    window.location.href = "./scenes/play_versus.html";
+}
 
 
 
@@ -28,10 +45,22 @@ else if (window.location.pathname.endsWith("play_solo.html")) {
 
 }
 else if (window.location.pathname.endsWith("play_versus.html")) {
+    const selected_versus = localStorage.getItem("choice1vpc");
+    if (selected_versus === "false") {
+        p2status.style.visibility = "visible";
+
+    }
+    else if(selected_versus === "true"){
+        pcstatus.style.visibility = "visible";
+    }
+    
+    
+    
     main_menu_btn.addEventListener("click", () => {
         window.close();
         window.location.href = "../text_rpg.html";
     });
+
 
 
 }
@@ -59,10 +88,4 @@ function close_choice() {
     document.getElementById("versus-window").style.display = "none";
 }
 
-function p2_choice(){
-    const p2status = document.getElementById("stats-p2");
-    p2status.style.visibility = "visible";
-    window.location.href = "./scenes/play_versus.html";
-
-};
 
