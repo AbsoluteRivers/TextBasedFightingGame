@@ -60,12 +60,9 @@ function close_choice() {
 }
 
 function p2_choice(){
-    open_versus();
     const p2status = document.getElementById("stats-p2");
     p2status.style.visibility = "visible";
-
-};
-
-function open_versus() {
     window.location.href = "./scenes/play_versus.html";
+
 };
+
