@@ -20,4 +20,6 @@
 - Provided versus scene interface  
 - Made main menu button function the same in both solo and versus scenes  
 - Improved visibility for versus stats  
-
+- Provided pop up choices on versus to identify which enemy to show visible  
+- Added overlay on pop up window to prevent accidentally clicking outside of the window  
+- Added scripts for events on button press, emits visibility of chosen enemy on pop up window  
