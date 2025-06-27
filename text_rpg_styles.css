@@ -46,6 +46,26 @@ body {
     z-index: 5;
 }
 
+
+.fight-overlay {
+    display: none;
+    position: fixed;
+    width: 35%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 5;
+}
+
+#p1-overlay {
+    display: none;
+    top: 0; left: 0;
+}
+
+#p2-overlay #pc-overlay {
+    display: none;
+    top: 0; right: 0;
+}
+
 .main-menu {
     display: flex;
     justify-content: center;
@@ -56,9 +76,11 @@ body {
 }
 
 .btn-area {
-    display: grid;
-    position: absolute;
-    right: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    text-align: center;
 }
 
 .main-btn {
@@ -68,31 +90,52 @@ body {
 }
 
 
-button {
+.menu-story, .main-btn {
     border-color: var(--blue-btn);
     border-radius: 0 20px 0 20px;
     padding: 0 1rem 0 1rem;
 }
 
+.versus-body{
+    background-image: url("./assets/imgs/gladi-free.png");
+    background-size: cover;
+    
+}
+
+#versus-selector-txt {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
 .stats-p1 {
+    background-color: rgba(255, 160, 180, 0.4);
+    border-radius: 1rem;
     display: grid;
     position: absolute;
     vertical-align: auto;
-    padding: 5px 0 5px 0;
+    left: 1.5rem;
     margin-top: 2rem;
 }
 
 .stats-p2, .stats-pc{
+    background-color: rgba(255, 160, 180, 0.4);
+    border-radius: 1rem;
     visibility: hidden;
     display: grid;
     position: absolute;
     vertical-align: auto;
-    right: 20px;
+    right: 1.5rem;
     margin-top: 2rem;
 }
 
+.name {
+    padding: 0.5rem;
+}
+
 .stat {
-    padding: 3px 0 3px 0;
+    padding: 0 0.5rem 0.5rem 0.5rem;
     
 }
 
@@ -114,4 +157,36 @@ button {
 
 #mana-bar {
     background-color: var(--light-blue);
+}
+
+.left-btn-fight {
+    display: grid;
+    position: absolute;
+    border-radius: 0;
+    top: 15rem;
+    left: 7rem;
+    width: auto;
+}
+
+.right-btn-fight {
+    display: grid;
+    position: absolute;
+    border-radius: 0;
+    top: 15rem;
+    right: 7rem;
+    width: auto;
+}
+
+.left-fight, .right-fight {
+    margin: 20px 0 0 0;
+    height: 2rem;
+    padding: 0 1rem 0 1rem;
+}
+
+.left-fight {
+    border-radius: 10% 50% 50% 10%;
+}
+
+.right-fight {
+    border-radius: 50% 10% 10% 50%;
 }
