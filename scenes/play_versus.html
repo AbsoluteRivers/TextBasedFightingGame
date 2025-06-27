@@ -6,12 +6,17 @@
         <link rel="stylesheet" href = "../text_rpg_styles.css">
         <title>Words of Power - Versus</title>
     </head>
-    <body>
+    <body class="versus-body">
         <div class="menu-versus">
             
         </div>
+        <div class="btn-area">
+            <button class="menu-story" id="story-main-menu-btn">Main Menu</button>
+        </div>
+
         <div class="stats-p1" id="stats-p1-id">
-            <span class="name" id="p1-name"><em> </em></span>
+            <span class="name" id="p1-name"><em>Player 1: </em></span>
+            <span class="score-right"><strong> </strong></span>
             <span class="stat"><strong>Stamina: </strong>
                 <div class="bar" id="health-bar">100/100</div>
             </span>
@@ -23,7 +28,8 @@
             </span>
         </div>
         <div class="stats-p2" id="stats-p2-id">
-            <span class="name" id="p2-name"><em> </em></span>
+            <span class="name" id="p2-name"><em>Player 2: </em></span>
+            <span class="score-right"><strong> </strong></span>
             <span class="stat"><strong>Stamina: </strong>
                 <div class="bar" id="health-bar">100/100</div>
             </span>
@@ -36,6 +42,7 @@
         </div>
         <div class="stats-pc" id="stats-pc-id">
             <span class="name" id="pc-name"><em>PC: </em></span>
+            <span class="score-right"><strong> </strong></span>
             <span class="stat"><strong>Stamina: </strong>
                 <div class="bar" id="health-bar">100/100</div>
             </span>
@@ -47,10 +54,26 @@
             </span>
         </div>
 
-
-        <div class="btn-area">
-            <button class="menu-story" id="story-main-menu-btn">Main Menu</button>
+        <div class="left-btn-fight" id="btn-fight-p1">
+            <div class="fight-overlay" id="p1-overlay"></div>
+            <button class="left-fight" id="physical-p1">Weapon Hit</button>
+            <button class="left-fight" id="block-p1">Counter</button>
+            <button class="left-fight" id="magical-p1">Magic Spell</button>
         </div>
+        <div class="right-btn-fight" id="btn-fight-p2">
+            <div class="fight-overlay" id="p2-overlay"></div>
+            <button class="right-fight" id="physical-p2">Weapon Hit</button>
+            <button class="right-fight" id="block-p2">Counter</button>
+            <button class="right-fight" id="magical-p2">Magic Spell</button>
+        </div>
+        <div class="right-btn-fight" id="btn-fight-pc">
+            <div class="fight-overlay" id="pc-overlay"></div>
+            <button class="right-fight" id="physical-pc">Weapon Hit</button>
+            <button class="right-fight" id="block-pc">Counter</button>
+            <button class="right-fight" id="magical-pc">Magic Spell</button>
+        </div>
+
+        
         <script src="../text_rpg_script.js">
         </script>    
     </body>
