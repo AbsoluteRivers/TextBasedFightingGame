@@ -23,3 +23,5 @@
 - Provided pop up choices on versus to identify which enemy to show visible  
 - Added overlay on pop up window to prevent accidentally clicking outside of the window  
 - Added scripts for events on button press, emits visibility of chosen enemy on pop up window  
+- Provided buttons on versus page as well as added background image  
+- Edited styles of status for better visibility  
