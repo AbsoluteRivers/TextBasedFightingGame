@@ -61,7 +61,7 @@ body {
     top: 0; left: 0;
 }
 
-#p2-overlay #pc-overlay {
+#p2-overlay, #pc-overlay {
     display: none;
     top: 0; right: 0;
 }
