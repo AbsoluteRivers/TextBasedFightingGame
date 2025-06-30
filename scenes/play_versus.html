@@ -29,18 +29,6 @@
         </div>
         <div class="stats-p2" id="stats-p2-id">
             <span class="name" id="p2-name"><em>Player 2: </em></span>
-            <span class="score-right"><strong> </strong></span>
-            <span class="stat"><strong>Stamina: </strong>
-                <div class="bar" id="health-bar">100/100</div>
-            </span>
-            <span class="stat"><strong>Shield: </strong>
-                <div class="bar" id="shield-bar">100/100</div>
-            </span>
-            <span class="stat"><strong>Mana: </strong>
-                <div class="bar" id="mana-bar">100/100</div>
-            </span>
-        </div>
-        <div class="stats-pc" id="stats-pc-id">
             <span class="name" id="pc-name"><em>PC: </em></span>
             <span class="score-right"><strong> </strong></span>
             <span class="stat"><strong>Stamina: </strong>
@@ -53,6 +41,7 @@
                 <div class="bar" id="mana-bar">100/100</div>
             </span>
         </div>
+        
 
         <div class="left-btn-fight" id="btn-fight-p1">
             <div class="fight-overlay" id="p1-overlay"></div>
@@ -73,7 +62,17 @@
             <button class="right-fight" id="magical-pc">Magic Spell</button>
         </div>
 
-        
+        <div id="overlay-win"></div>
+        <div id="versus-win-window">
+                <span id="win-txt"> You Win! </span><br>
+                <span id="lost-txt"> You Lost! </span><br>
+                <span id="p1-win-txt"> Player 1 Win! </span><br>
+                <span id="p2-win-txt"> Player 2 Win! </span><br>
+                <button class="win-choice" id="choice-fight"> Fight Again </button>
+                <button class="win-choice" id="choice-return"> Main Menu </button>
+
+        </div>
+
         <script src="../text_rpg_script.js">
         </script>    
     </body>
