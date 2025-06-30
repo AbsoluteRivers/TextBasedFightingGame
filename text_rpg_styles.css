@@ -61,10 +61,21 @@ body {
     top: 0; left: 0;
 }
 
-#p2-overlay, #pc-overlay {
-    display: none;
+#p2-overlay {
+    display: block;
     top: 0; right: 0;
 }
+
+.name {
+    position: absolute;
+}
+
+#p2-name, #pc-name {
+    visibility: hidden;
+    
+}
+
+
 
 .main-menu {
     display: flex;
@@ -117,17 +128,18 @@ body {
     vertical-align: auto;
     left: 1.5rem;
     margin-top: 2rem;
+    padding-top: 2rem;
 }
 
-.stats-p2, .stats-pc{
+.stats-p2{
     background-color: rgba(255, 160, 180, 0.4);
     border-radius: 1rem;
-    visibility: hidden;
     display: grid;
     position: absolute;
     vertical-align: auto;
     right: 1.5rem;
     margin-top: 2rem;
+    padding-top: 2rem;
 }
 
 .name {
@@ -189,4 +201,30 @@ body {
 
 .right-fight {
     border-radius: 50% 10% 10% 50%;
+}
+
+#win-txt, #lost-txt, #p1-win-txt, #p2-win-txt {
+    visibility: hidden;
+}
+
+#overlay-win {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 5;
+}
+
+#versus-win-window {
+    display: none;
+    position: fixed;
+    top: 25%; left: 50%;
+    transform: translate(-50%, -25%);
+    background-color: rgba(255, 255, 255, 1);
+    padding: 1.5rem;
+    border: 3px solid var(--black-txt);
+    border-radius: 10px;
+    z-index: 10;
 }
