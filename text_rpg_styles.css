@@ -75,7 +75,14 @@ body {
     
 }
 
+.winning-txt {
+    position: absolute;
+    text-align: center;
+}
 
+.win-choice {
+    margin-top: 2rem;
+}
 
 .main-menu {
     display: flex;
@@ -203,8 +210,12 @@ body {
     border-radius: 50% 10% 10% 50%;
 }
 
-#win-txt, #lost-txt, #p1-win-txt, #p2-win-txt {
-    visibility: hidden;
+#versus-win-window{
+    position: absolute;
+}
+
+#win-txt, #lost-txt, #p1-win-txt, #p2-win-txt, #tie-txt {
+    visibility: visible;
 }
 
 #overlay-win {
