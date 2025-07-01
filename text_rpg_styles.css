@@ -127,6 +127,11 @@ body {
     text-align: center;
 }
 
+#audio-play-pause {
+    background: none;
+    border: none;
+}
+
 .stats-p1 {
     background-color: rgba(255, 160, 180, 0.4);
     border-radius: 1rem;
