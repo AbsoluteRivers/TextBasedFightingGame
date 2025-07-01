@@ -7,8 +7,12 @@ const main_menu_btn = document.getElementById("story-main-menu-btn");
 const return_close_btn = document.getElementById("return-close");
 const choice_p2 = document.getElementById("choice-p2");
 const choice_pc = document.getElementById("choice-pc");
-const p2status = document.getElementById("stats-p2-id");
-const pcstatus = document.getElementById("stats-pc-id");
+const p2name = document.getElementById("p2-name");
+const pcname = document.getElementById("pc-name");
+
+
+
+
 
 let status_sets = {
     health: 100,
@@ -17,21 +21,9 @@ let status_sets = {
 }
 
 let attack_sets = {
-    physical_attack: {
-        hit: "weapon",
-        weakness: "counter",
-        strong: "magic"
-    },
-    counter_attack: {
-        hit: "counter",
-        weakness: "magic",
-        strong: "hit"
-    },
-    magic_attack: {
-        hit: "magic",
-        weakness: "weapon",
-        strong: "counter"
-    }
+    physical_attack: "weapon",
+    counter_attack: "counter",
+    magic_attack: "magic"
 };
 
 
@@ -50,6 +42,15 @@ function pc_choice(){
     window.location.href = "./scenes/play_versus.html";
     
 }
+
+
+
+const p1_stats = {...status_sets};
+const opp_stats = {...status_sets};
+
+let p1_attack_type = "";
+let p2_attack_type = "";
+let pc_attack_type = "";
 
 
 
@@ -82,70 +83,135 @@ else if (window.location.pathname.endsWith("play_versus.html")) {
     const magical_p2 = document.getElementById("magical-p2");
     const magical_pc = document.getElementById("magical-pc");
     const p1_overlay = document.getElementById("p1-overlay");
-    const p2_overlay = document.getElementById("p2-overlay");
-    const pc_overlay = document.getElementById("pc-overlay");
-    const p1_stats = {...status_sets};
+    const opp_overlay = document.getElementById("p2-overlay");
     const p1_attack = JSON.parse(JSON.stringify(attack_sets));
-    const p1_attack_type = "";
-    const p2_attack_type = "";
-    const pc_attack_type = "";
+    
 
 
-    const p2_stats = {...status_sets};
     const p2_attack = JSON.parse(JSON.stringify(attack_sets));
 
-    const pc_stats = {...status_sets};
+    
     const pc_attack = JSON.parse(JSON.stringify(attack_sets));
 
 
+    const fight_again_btn = document.getElementById("choice-fight");
+    const return_mainmenu_btn = document.getElementById("choice-return");
+
+
+    document.getElementById("p1-win-txt").style.visibility = "hidden";
+    document.getElementById("win-txt").style.visibility = "hidden";
+    document.getElementById("p2-win-txt").style.visibility = "hidden";
+    document.getElementById("lost-txt").style.visibility = "hidden";
+    document.getElementById("tie-txt").style.visibility = "hidden";
+
     if (selected_versus === "false") {
-        p2status.style.visibility = "visible";
-        p2_overlay.style.display = "block";
+        p2name.style.visibility = "visible";
+
 
     }
     else if(selected_versus === "true"){
-        pcstatus.style.visibility = "visible";
-        pc_overlay.style.display = "block";
+        pcname.style.visibility = "visible";
         
     }
     
+
+    
+    
+    
+
     
     physical_p1.addEventListener("click", () => {
-        p1_attack_type = p1_attack.physical_attack.hit;
-        if (p2status.style.visibility === "visible"){
-            p2_overlay.style.display = "none";
-            p1_overlay.style.display = "block";
-        } else if (pcstatus.style.visibility === "visible"){
-            pc_overlay.style.display = "none";
-            p1_overlay.style.display = "block";
-        }
+        p1_attack_type = p1_attack.physical_attack;
+        opp_overlay.style.display = "none";
+        p1_overlay.style.display = "block";
+        console.log(p1_attack_type);
     });
     physical_p2.addEventListener("click", () => {
         p2_attack_type = p2_attack.physical_attack;
-
+        p1_overlay.style.display = "none";
+        opp_overlay.style.display = "block";
+        damage_calculator(p1_attack_type, p2_attack_type);
+        winner_calculator();
     });
     physical_pc.addEventListener("click", () => {
         pc_attack_type = pc_attack.physical_attack;
-
+        p1_overlay.style.display = "none";
+        opp_overlay.style.display = "block";
+        damage_calculator(p1_attack_type, pc_attack_type);
+        winner_calculator();
     });
 
     block_p1.addEventListener("click", () => {
         p1_attack_type = p1_attack.counter_attack;
-
+        opp_overlay.style.display = "none";
+        p1_overlay.style.display = "block";
+        
+        
     });
     block_p2.addEventListener("click", () => {
         p2_attack_type = p2_attack.counter_attack;
-
+        p1_overlay.style.display = "none";
+        opp_overlay.style.display = "block";
+        damage_calculator(p1_attack_type, p2_attack_type);
+        winner_calculator();
     });
     block_pc.addEventListener("click", () => {
         pc_attack_type = pc_attack.counter_attack;
-
+        p1_overlay.style.display = "none";
+        opp_overlay.style.display = "block";
+        damage_calculator(p1_attack_type, pc_attack_type);
+        winner_calculator();
     });
 
-
+    magical_p1.addEventListener("click", () => {
+        p1_attack_type = p1_attack.magic_attack;
+        opp_overlay.style.display = "none";
+        p1_overlay.style.display = "block";
+    });
+    magical_p2.addEventListener("click", () => {
+        p2_attack_type = p2_attack.magic_attack;
+        p1_overlay.style.display = "none";
+        opp_overlay.style.display = "block";
+        damage_calculator(p1_attack_type, p2_attack_type);
+        winner_calculator();
+    });
+    magical_pc.addEventListener("click", () => {
+        pc_attack_type = pc_attack.magic_attack;
+        p1_overlay.style.display = "none";
+        opp_overlay.style.display = "block";
+        damage_calculator(p1_attack_type, pc_attack_type);
+        winner_calculator();
+    });
+    
+    
+    
+    
+    
 
     
     main_menu_btn.addEventListener("click", () => {
+        window.close();
+        window.location.href = "../text_rpg.html";
+    });
+
+
+    fight_again_btn.addEventListener("click", ()=> {
+        p1_stats.health = 100;
+        p1_stats.stamina = 100;
+        p1_stats.mana = 100;
+        opp_stats.health = 100;
+        opp_stats.stamina = 100;
+        opp_stats.mana = 100;
+        document.getElementById("overlay-win").style.display = "none";
+        document.getElementById("versus-win-window").style.display = "none";
+        document.getElementById("p1-win-txt").style.visibility = "hidden";
+        document.getElementById("win-txt").style.visibility = "hidden";
+        document.getElementById("p2-win-txt").style.visibility = "hidden";
+        document.getElementById("lost-txt").style.visibility = "hidden";
+        document.getElementById("tie-txt").style.visibility = "hidden";
+        window.close();
+    });
+    return_mainmenu_btn.addEventListener("click", () => {
         window.close();
         window.location.href = "../text_rpg.html";
     });
@@ -181,23 +247,64 @@ function close_choice() {
 function damage_calculator(pl_hit, op_hit) {
     if (pl_hit === attack_sets.physical_attack){
         if (op_hit === attack_sets.counter_attack){
-            //pass self 20 damage
+            p1_stats.health -= 20;
         } else if (op_hit === attack_sets.magic_attack){
-            //pass opponent 20 damage
+            opp_stats.health -=20;
         } else if (op_hit === pl_hit){
-            //pass both 10 damage
+            p1_stats.health -= 10;
+            opp_stats.health -=10;
         }
     }
+
+    if (pl_hit === attack_sets.counter_attack){
+        if (op_hit === attack_sets.magic_attack){
+            p1_stats.stamina -= 20;
+        } else if (op_hit === attack_sets.physical_attack){
+            opp_stats.stamina -=20;
+        } else if (op_hit === pl_hit){
+            p1_stats.stamina -= 10;
+            opp_stats.stamina -=10;
+        }
+    }
+
+
+    if (pl_hit === attack_sets.magic_attack){
+        if (op_hit === attack_sets.physical_attack){
+            p1_stats.mana -= 20;
+        } else if (op_hit === attack_sets.counter_attack){
+            opp_stats.mana -=20;
+        } else if (op_hit === pl_hit){
+            p1_stats.mana -= 10;
+            opp_stats.mana -=10;
+        }
+    }
+    console.log(p1_stats.health + " " + opp_stats.health);
+    console.log(p1_stats.stamina + " " + opp_stats.stamina);
+    console.log(p1_stats.mana + " " + opp_stats.mana);
+    
 }
 
+
 function winner_calculator() {
-    if (p1_stats.health === 0 || p1_stats.mana === 0 || p1_stats.stamina === 0){
-        print("player 1 lost");
-
-    } else if (p2_stats.health === 0 || p2_stats.mana === 0 || p2_stats.stamina === 0 ){
-        print("player 2 lost");
-
-    } else if (pc_stats.health === 0 || pc_stats.mana === 0 || pc_stats.stamina === 0 ){
-        print("PC lost");
-    }
+    if (p1_stats.health <= 0 && opp_stats.health <= 0 || p1_stats.stamina <= 0 && opp_stats.stamina <= 0 || p1_stats.mana <= 0 && opp_stats.mana <= 0){
+        document.getElementById("overlay-win").style.display = "block";
+        document.getElementById("versus-win-window").style.display = "block";
+        document.getElementById("tie-txt").style.visibility = "visible";
+    } else if (opp_stats.health <= 0 || opp_stats.mana <= 0 || opp_stats.stamina <= 0){
+        document.getElementById("overlay-win").style.display = "block";
+        document.getElementById("versus-win-window").style.display = "block";
+        if (p2name.style.visibility === "visible"){
+            document.getElementById("p1-win-txt").style.visibility = "visible";
+        } else if (pcname.style.visibility === "visible") {
+            document.getElementById("win-txt").style.visibility = "visible";
+        }  
+    } else if (p1_stats.health <= 0 || p1_stats.mana <= 0 || p1_stats.stamina <= 0){
+        document.getElementById("overlay-win").style.display = "block";
+        document.getElementById("versus-win-window").style.display = "block";
+        if (p2name.style.visibility === "visible"){
+            document.getElementById("p2-win-txt").style.visibility = "visible";
+        } else if (pcname.style.visibility === "visible") {
+            document.getElementById("lost-txt").style.visibility = "visible";
+        }  
+    } 
 }
