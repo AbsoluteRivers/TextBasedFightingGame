@@ -9,7 +9,8 @@ const choice_p2 = document.getElementById("choice-p2");
 const choice_pc = document.getElementById("choice-pc");
 const p2name = document.getElementById("p2-name");
 const pcname = document.getElementById("pc-name");
-
+const versus_audio = document.getElementById("versus-bgm");
+const audio_play = document.getElementById("audio-play-pause");
 
 const p1_hp_num = document.getElementById("health-bar-p1");
 const p1_shield_num = document.getElementById("shield-bar-p1");
@@ -111,6 +112,7 @@ else if (window.location.pathname.endsWith("play_versus.html")) {
     document.getElementById("lost-txt").style.visibility = "hidden";
     document.getElementById("tie-txt").style.visibility = "hidden";
 
+
     if (selected_versus === "false") {
         p2name.style.visibility = "visible";
 
@@ -122,8 +124,21 @@ else if (window.location.pathname.endsWith("play_versus.html")) {
     }
     
 
+    audio_play.textContent = versus_audio.paused ? "▶️" : "⏸️";
+
+    audio_play.addEventListener("click", () => {
+        if(versus_audio.paused){
+            versus_audio.play().catch((err) => {
+                console.warn("Autoplay blocked: ", err);
+            });
+        } else {
+            versus_audio.pause();
+        }
+        audio_play.textContent = versus_audio.paused ? "▶️" : "⏸️";
+    });
+
     
-    
+
     
 
     
