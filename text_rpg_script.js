@@ -11,6 +11,13 @@ const p2name = document.getElementById("p2-name");
 const pcname = document.getElementById("pc-name");
 
 
+const p1_hp_num = document.getElementById("health-bar-p1");
+const p1_shield_num = document.getElementById("shield-bar-p1");
+const p1_mana_num = document.getElementById("mana-bar-p1");
+const opp_hp_num = document.getElementById("health-bar-p2");
+const opp_shield_num = document.getElementById("shield-bar-p2");
+const opp_mana_num = document.getElementById("mana-bar-p2");
+
 
 
 
@@ -125,6 +132,17 @@ else if (window.location.pathname.endsWith("play_versus.html")) {
         opp_overlay.style.display = "none";
         p1_overlay.style.display = "block";
         console.log(p1_attack_type);
+        if (pcname.style.visibility === "visible"){
+            const attack_keys = Object.keys(pc_attack);
+            const random_attack = attack_keys[Math.floor(Math.random() * attack_keys.length)];
+            pc_attack_type = pc_attack[random_attack];
+            p1_overlay.style.display = "none";
+            opp_overlay.style.display = "block";
+            damage_calculator(p1_attack_type, pc_attack_type);
+            winner_calculator();
+        } else {
+            return
+        }
     });
     physical_p2.addEventListener("click", () => {
         p2_attack_type = p2_attack.physical_attack;
@@ -145,6 +163,17 @@ else if (window.location.pathname.endsWith("play_versus.html")) {
         p1_attack_type = p1_attack.counter_attack;
         opp_overlay.style.display = "none";
         p1_overlay.style.display = "block";
+        if (pcname.style.visibility === "visible"){
+            const attack_keys = Object.keys(pc_attack);
+            const random_attack = attack_keys[Math.floor(Math.random() * attack_keys.length)];
+            pc_attack_type = pc_attack[random_attack];
+            p1_overlay.style.display = "none";
+            opp_overlay.style.display = "block";
+            damage_calculator(p1_attack_type, pc_attack_type);
+            winner_calculator();
+        } else {
+            return
+        }
         
         
     });
@@ -167,6 +196,17 @@ else if (window.location.pathname.endsWith("play_versus.html")) {
         p1_attack_type = p1_attack.magic_attack;
         opp_overlay.style.display = "none";
         p1_overlay.style.display = "block";
+        if (pcname.style.visibility === "visible"){
+            const attack_keys = Object.keys(pc_attack);
+            const random_attack = attack_keys[Math.floor(Math.random() * attack_keys.length)];
+            pc_attack_type = pc_attack[random_attack];
+            p1_overlay.style.display = "none";
+            opp_overlay.style.display = "block";
+            damage_calculator(p1_attack_type, pc_attack_type);
+            winner_calculator();
+        } else {
+            return
+        }
     });
     magical_p2.addEventListener("click", () => {
         p2_attack_type = p2_attack.magic_attack;
@@ -209,6 +249,17 @@ else if (window.location.pathname.endsWith("play_versus.html")) {
         document.getElementById("p2-win-txt").style.visibility = "hidden";
         document.getElementById("lost-txt").style.visibility = "hidden";
         document.getElementById("tie-txt").style.visibility = "hidden";
+
+        p1_hp_num.innerText = p1_stats.health;
+        opp_hp_num.innerText = opp_stats.health;
+        p1_shield_num.innerText = p1_stats.stamina;
+        opp_shield_num.innerText = opp_stats.stamina;
+        p1_mana_num.innerText = p1_stats.mana;
+        opp_mana_num.innerText = opp_stats.mana;
+
+        p1_hp_num.style.width = `18rem`;
+        opp_hp_num.style.width = `18rem`;
+
         window.close();
     });
     return_mainmenu_btn.addEventListener("click", () => {
@@ -245,25 +296,99 @@ function close_choice() {
 
 
 function damage_calculator(pl_hit, op_hit) {
+    p1_hp_num.innerText = p1_stats.health;
+    opp_hp_num.innerText = opp_stats.health;
+    p1_shield_num.innerText = p1_stats.stamina;
+    opp_shield_num.innerText = opp_stats.stamina;
+    p1_mana_num.innerText = p1_stats.mana;
+    opp_mana_num.innerText = opp_stats.mana;
+    const current_p1_hp_width = parseFloat(getComputedStyle(p1_hp_num).width);
+    const current_p1_shield_width = parseFloat(getComputedStyle(p1_shield_num).width);
+    const current_p1_mana_width = parseFloat(getComputedStyle(p1_mana_num).width);
+    const current_opp_hp_width = parseFloat(getComputedStyle(opp_hp_num).width);
+    const current_opp_shield_width = parseFloat(getComputedStyle(opp_shield_num).width);
+    const current_opp_mana_width = parseFloat(getComputedStyle(opp_mana_num).width);
+
+    const damage_amount = 1.8 * 16;
+
+
+    let new_p1_shield
+    let new_p1_mana
+    
+    let new_opp_shield
+    let new_opp_mana
+
+
     if (pl_hit === attack_sets.physical_attack){
+        let new_p1_hp
+        let new_opp_hp
+
         if (op_hit === attack_sets.counter_attack){
             p1_stats.health -= 20;
+            p1_hp_num.innerText = p1_stats.health;
+            new_p1_hp = current_p1_hp_width - damage_amount * 2;
+            if (new_p1_hp < 0){
+                new_p1_hp = 0;
+            }
+            p1_hp_num.style.width = `${new_p1_hp}px`;
         } else if (op_hit === attack_sets.magic_attack){
             opp_stats.health -=20;
+            opp_hp_num.innerText = opp_stats.health;
+            new_opp_hp = current_opp_hp_width - damage_amount * 2;
+            if (new_opp_hp < 0){
+                new_opp_hp = 0
+            }
+            opp_hp_num.style.width = `${new_opp_hp}px`;
         } else if (op_hit === pl_hit){
             p1_stats.health -= 10;
             opp_stats.health -=10;
+            p1_hp_num.innerText = p1_stats.health;
+            opp_hp_num.innerText = opp_stats.health;
+            new_opp_hp = current_opp_hp_width - damage_amount;
+            if (new_opp_hp < 0){
+                new_opp_hp = 0
+            }
+            opp_hp_num.style.width = `${new_opp_hp}px`;
+            new_p1_hp = current_p1_hp_width - damage_amount;
+            if (new_p1_hp < 0){
+                new_p1_hp = 0;
+            }
+            p1_hp_num.style.width = `${new_p1_hp}px`;
         }
     }
 
     if (pl_hit === attack_sets.counter_attack){
         if (op_hit === attack_sets.magic_attack){
             p1_stats.stamina -= 20;
+            p1_shield_num.innerText = p1_stats.stamina;
+            new_p1_shield = current_p1_shield_width - damage_amount * 2;
+            if (new_p1_shield < 0){
+                new_p1_shield = 0;
+            }
+            p1_shield_num.style.width = `${new_p1_shield}px`;
         } else if (op_hit === attack_sets.physical_attack){
             opp_stats.stamina -=20;
+            opp_shield_num.innerText = opp_stats.stamina;
+            new_opp_shield = current_opp_shield_width - damage_amount * 2;
+            if (new_opp_shield < 0){
+                new_opp_shield = 0
+            }
+            opp_shield_num.style.width = `${new_opp_shield}px`;
         } else if (op_hit === pl_hit){
             p1_stats.stamina -= 10;
             opp_stats.stamina -=10;
+            p1_shield_num.innerText = p1_stats.stamina;
+            opp_shield_num.innerText = opp_stats.stamina;
+            new_opp_shield = current_opp_shield_width - damage_amount;
+            if (new_opp_shield < 0){
+                new_opp_shield = 0
+            }
+            opp_shield_num.style.width = `${new_opp_shield}px`;
+            new_p1_shield = current_p1_shield_width - damage_amount;
+            if (new_p1_shield < 0){
+                new_p1_shield = 0;
+            }
+            p1_shield_num.style.width = `${new_p1_shield}px`;
         }
     }
 
@@ -271,11 +396,35 @@ function damage_calculator(pl_hit, op_hit) {
     if (pl_hit === attack_sets.magic_attack){
         if (op_hit === attack_sets.physical_attack){
             p1_stats.mana -= 20;
+            p1_mana_num.innerText = p1_stats.mana;
+            new_p1_mana = current_p1_mana_width - damage_amount * 2;
+            if (new_p1_mana < 0){
+                new_p1_mana = 0;
+            }
+            p1_mana_num.style.width = `${new_p1_mana}px`;
         } else if (op_hit === attack_sets.counter_attack){
             opp_stats.mana -=20;
+            opp_mana_num.innerText = opp_stats.mana;
+            new_opp_mana = current_opp_mana_width - damage_amount * 2;
+            if (new_opp_mana < 0){
+                new_opp_mana = 0
+            }
+            opp_mana_num.style.width = `${new_opp_mana}px`;
         } else if (op_hit === pl_hit){
             p1_stats.mana -= 10;
             opp_stats.mana -=10;
+            p1_mana_num.innerText = p1_stats.mana;
+            opp_mana_num.innerText = opp_stats.mana;
+            new_opp_mana = current_opp_mana_width - damage_amount;
+            if (new_opp_mana < 0){
+                new_opp_mana = 0
+            }
+            opp_mana_num.style.width = `${new_opp_mana}px`;
+            new_p1_mana = current_p1_mana_width - damage_amount;
+            if (new_p1_mana < 0){
+                new_p1_mana = 0;
+            }
+            p1_mana_num.style.width = `${new_p1_mana}px`;
         }
     }
     console.log(p1_stats.health + " " + opp_stats.health);
@@ -308,3 +457,4 @@ function winner_calculator() {
         }  
     } 
 }
+
