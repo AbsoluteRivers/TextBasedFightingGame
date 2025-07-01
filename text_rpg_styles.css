@@ -159,23 +159,27 @@ body {
 }
 
 .bar {
-    width: 18rem;
-    height: 1rem;
     border: 1px solid black;
     border-radius: 3px;
     font-size: 1rem;
 }
 
-#health-bar {
+#health-bar-p1, #health-bar-p2 {
     background-color: var(--light-red);
+    width: 18rem;
+    height: 1rem;
 }
 
-#shield-bar {
+#shield-bar-p1, #shield-bar-p2 {
     background-color: var(--yellow-txt);
+    width: 18rem;
+    height: 1rem;
 }
 
-#mana-bar {
+#mana-bar-p1, #mana-bar-p2 {
     background-color: var(--light-blue);
+    width: 18rem;
+    height: 1rem;
 }
 
 .left-btn-fight {
