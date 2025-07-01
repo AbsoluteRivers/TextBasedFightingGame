@@ -16,7 +16,7 @@
 - Utilized DOM manipulation for calling separate html using main menu button  
 - Updated CSS file for stylesheet  
   *Note: CSS selectors don't need ";" as and end, only objects and parameters within the selectors*  
-//- Hosted a github page for th textgame//  
+//- Hosted a github page for the textgame//  
 - Provided versus scene interface  
 - Made main menu button function the same in both solo and versus scenes  
 - Improved visibility for versus stats  
@@ -25,3 +25,18 @@
 - Added scripts for events on button press, emits visibility of chosen enemy on pop up window  
 - Provided buttons on versus page as well as added background image  
 - Edited styles of status for better visibility  
+- Provided scripts for versus buttons, no interactability yet  
+*Bug: There was a problem with using the buttons as the event on click was not activating*  
+*Fix: Used const to a variable that will be changed within the event. The const was prohibiting any other function from triggering*  
+*Error: There was a problem with the function damage_calculator. It is not reading the variables properly*  
+*Fix: Made variables global so the function can interact with the variables properly and not return null*  
+
+
+## Devlog Entry #3 (Week 3)
+
+### Progress:
+- Fixed the functionality of js script for damage calculation  
+- Provided events for buttons on win window  
+- Improved visuals for victory window on versus page  
+- Polished versus page with adaptable stats  
+- Provided audio for versus scene with interactable button for play/pause  
