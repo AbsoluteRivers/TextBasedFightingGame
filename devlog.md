@@ -16,7 +16,6 @@
 - Utilized DOM manipulation for calling separate html using main menu button  
 - Updated CSS file for stylesheet  
   *Note: CSS selectors don't need ";" as and end, only objects and parameters within the selectors*  
-//- Hosted a github page for the textgame//  
 - Provided versus scene interface  
 - Made main menu button function the same in both solo and versus scenes  
 - Improved visibility for versus stats  
@@ -40,3 +39,9 @@
 - Improved visuals for victory window on versus page  
 - Polished versus page with adaptable stats  
 - Provided audio for versus scene with interactable button for play/pause  
+- Finished with versus scene. Proceeding with story scene.  
+- Progressed with scripting the base story sequence for story scene  
+- Added styles for the buttons and paragraphs as well as added background for story scene  
+- Provided events and functions for buttons in story scene  
+- Finsihed basic work. Might add more story in the future  
+//- Hosted a github page for the textgame//  
