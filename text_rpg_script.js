@@ -1,4 +1,4 @@
-
+//note to self, better functions for streamlined solutions
 
 const solo_btn = document.getElementById("play-game-btn");
 const versus_btn = document.getElementById("local-versus-btn");
@@ -20,6 +20,8 @@ const opp_shield_num = document.getElementById("shield-bar-p2");
 const opp_mana_num = document.getElementById("mana-bar-p2");
 
 
+const next_story_btn = document.getElementById("next");
+const story_start = document.getElementById("story-start");
 
 
 let status_sets = {
@@ -36,10 +38,25 @@ let attack_sets = {
 
 
 let choice1vpc = true;
+let choicestory = true;
+
+let fightend = false;
+let playerwin = true;
+let tiefight = false;
+
+
+const story_paragraphs = [
+    "The crowd roars from the outside. I sit here, basking the glory I've received all my life as a warrior.",
+    "Another day at the battlefield for all the people to see.",
+    "After this, I might retire as a combatant. I've saved enough for my family to live peacefully.",
+    "I know past my prime but I still have one fight left in me.",
+    '<em>"Time to give the people what they came here for"</em>'
+];
 
 
 function p2_choice(){
     localStorage.setItem("choice1vpc", "false");
+    localStorage.setItem("choicestory", "false");
     window.location.href = "./scenes/play_versus.html";
     
 
@@ -47,6 +64,7 @@ function p2_choice(){
 
 function pc_choice(){
     localStorage.setItem("choice1vpc", "true");
+    localStorage.setItem("choicestory", "false");
     window.location.href = "./scenes/play_versus.html";
     
 }
@@ -64,6 +82,8 @@ let pc_attack_type = "";
 
 if (window.location.pathname.endsWith("text_rpg.html")) {
     solo_btn.addEventListener("click", () => {
+        localStorage.setItem("fightend", "false")
+        localStorage.setItem("choicestory", "true");
         window.location.href = "./scenes/play_solo.html";
     });
     versus_btn.addEventListener("click", () => {
@@ -73,6 +93,35 @@ if (window.location.pathname.endsWith("text_rpg.html")) {
     });
 }
 else if (window.location.pathname.endsWith("play_solo.html")) {
+    const fight_end = localStorage.getItem("fightend");
+    const tied = JSON.parse(localStorage.getItem("tied"));
+    
+
+    let curr_narr = 0;
+    story_start.innerHTML = story_paragraphs[curr_narr];
+    
+
+    next_story_btn.addEventListener("click", () => {
+        
+        curr_narr++;
+        story_start.innerHTML += `<br>${story_paragraphs[curr_narr]}`;
+        if (curr_narr >= story_paragraphs.length){
+            localStorage.setItem("choice1vpc", "true");
+            window.location.href = "play_versus.html";
+            return;
+        }
+        
+    });
+    
+    if (fight_end === "true"){
+        story_start.style.display = "none";
+        document.getElementById("retry").disabled = "false";
+        tied ? document.getElementById("tie-solo").style.display = "block" : story_ending();
+        
+        
+    }
+
+
     main_menu_btn.addEventListener("click", () => {
         window.close();
         window.location.href = "../text_rpg.html";
@@ -124,7 +173,19 @@ else if (window.location.pathname.endsWith("play_versus.html")) {
     }
     
 
+    
+
     audio_play.textContent = versus_audio.paused ? "▶️" : "⏸️";
+    //this, I forgot this ternary operator existed so I go if else
+    //then again, I had 3 instead of 2 conditions. And it's not necessarily a true or fa-
+    //I could have. I could have made it a ternary operator
+    //100% could have
+
+    window.addEventListener("DOMContentLoaded",() => {
+        versus_audio.play().catch(()=>{
+            console.log("blocked audio");
+        })
+    })
 
     audio_play.addEventListener("click", () => {
         if(versus_audio.paused){
@@ -274,6 +335,12 @@ else if (window.location.pathname.endsWith("play_versus.html")) {
 
         p1_hp_num.style.width = `18rem`;
         opp_hp_num.style.width = `18rem`;
+        p1_shield_num.style.width = `18rem`;
+        opp_shield_num.style.width = `18rem`;
+        p1_mana_num.style.width = `18rem`;
+        opp_mana_num.style.width = `18rem`;
+
+
 
         window.close();
     });
@@ -296,7 +363,7 @@ exit_btn.addEventListener("click", () => {
         return
     }
 });
-
+//not really necessary so might delete or reframe as different later
 
 function open_choice() {
     document.getElementById("overlay").style.display = "block";
@@ -447,9 +514,30 @@ function damage_calculator(pl_hit, op_hit) {
     console.log(p1_stats.mana + " " + opp_stats.mana);
     
 }
-
+/*damage calculator that's just a full-blown nested if-else statement
+Had an epiphany of using a ternary operator after the whole audio incident
+Still hasn't fixed the audio being autoblocked by browser*/
 
 function winner_calculator() {
+    const story_mode = localStorage.getItem("choicestory");
+    if (story_mode === "true"){
+        if (p1_stats.health <= 0 || p1_stats.stamina <= 0 || p1_stats.mana <= 0){
+            localStorage.setItem("fightend", "true");
+            localStorage.setItem("playerwin", "true");
+            window.location.href = "play_solo.html";
+        }
+        if (opp_stats.health <= 0 || opp_stats.stamina <= 0 || opp_stats.mana <= 0){
+            localStorage.setItem("fightend", "true");
+            localStorage.setItem("playerwin", "false");
+            window.location.href = "play_solo.html";
+        }
+        if ((p1_stats.health <= 0 || p1_stats.stamina <= 0 || p1_stats.mana <= 0)&&(opp_stats.health <= 0 || opp_stats.stamina <= 0 || opp_stats.mana <= 0)){
+            localStorage.setItem("fightend", "true");
+            localStorage.setItem("tiefight", "true");
+            window.location.href = "play_solo.html";
+        }
+    };
+
     if (p1_stats.health <= 0 && opp_stats.health <= 0 || p1_stats.stamina <= 0 && opp_stats.stamina <= 0 || p1_stats.mana <= 0 && opp_stats.mana <= 0){
         document.getElementById("overlay-win").style.display = "block";
         document.getElementById("versus-win-window").style.display = "block";
@@ -471,5 +559,15 @@ function winner_calculator() {
             document.getElementById("lost-txt").style.visibility = "visible";
         }  
     } 
-}
 
+    
+}
+/*had a bunch of problems here because of one measely <br> point in the html file
+lost mental stability over one small detail
+I am dumb*/
+
+
+function story_ending() {
+    const winner = JSON.parse(localStorage.getItem("playerwin"));
+    winner ? document.getElementById("win-solo").style.display = "block" : document.getElementById("lost-solo").style.display = "block";
+}
