@@ -58,7 +58,7 @@ const story_paragraphs = [
 function p2_choice(){
     localStorage.setItem("choice1vpc", "false");
     localStorage.setItem("choicestory", "false");
-    window.location.href = "./scenes/play_versus.html";
+    window.location.href = "scenes/play_versus/";
     
 
 };
@@ -66,7 +66,7 @@ function p2_choice(){
 function pc_choice(){
     localStorage.setItem("choice1vpc", "true");
     localStorage.setItem("choicestory", "false");
-    window.location.href = "./scenes/play_versus.html";
+    window.location.href = "scenes/play_versus/";
     
 }
 
@@ -81,11 +81,13 @@ let pc_attack_type = "";
 
 
 
-if (window.location.pathname.endsWith("text_rpg")) {
+
+
+if (window.location.pathname.endsWith("/")) {
     solo_btn.addEventListener("click", () => {
         localStorage.setItem("fightend", "false")
         localStorage.setItem("choicestory", "true");
-        window.location.href = "./scenes/play_solo";
+        window.location.href = "scenes/play_solo/";
     });
     versus_btn.addEventListener("click", () => {
         open_choice();
@@ -93,7 +95,7 @@ if (window.location.pathname.endsWith("text_rpg")) {
         /**window.location.href = "./scenes/play_versus.html";**/
     });
 }
-else if (window.location.pathname.endsWith("play_solo")) {
+else if (window.location.pathname.endsWith("/play_solo/")) {
     const fight_end = localStorage.getItem("fightend");
     const tied = JSON.parse(localStorage.getItem("tied"));
     
@@ -108,7 +110,7 @@ else if (window.location.pathname.endsWith("play_solo")) {
         story_start.innerHTML += `<br>${story_paragraphs[curr_narr]}`;
         if (curr_narr >= story_paragraphs.length){
             localStorage.setItem("choice1vpc", "true");
-            window.location.href = "play_versus";
+            window.location.href = "../play_versus/";
             return;
         }
         
@@ -137,16 +139,16 @@ else if (window.location.pathname.endsWith("play_solo")) {
 
     exit_story.addEventListener("click", () => {
         window.close();
-        window.location.href = "../index";
+        window.location.href = "../";
     });
 
     main_menu_btn.addEventListener("click", () => {
         window.close();
-        window.location.href = "../index";
+        window.location.href = "../";
     });
 
 }
-else if (window.location.pathname.endsWith("play_versus")) {
+else if (window.location.pathname.endsWith("/play_versus/")) {
     const selected_versus = localStorage.getItem("choice1vpc");
     const physical_p1 = document.getElementById("physical-p1");
     const physical_p2 = document.getElementById("physical-p2");
@@ -325,7 +327,7 @@ else if (window.location.pathname.endsWith("play_versus")) {
     
     main_menu_btn.addEventListener("click", () => {
         window.close();
-        window.location.href = "../index";
+        window.location.href = "../";
     });
 
 
@@ -364,7 +366,7 @@ else if (window.location.pathname.endsWith("play_versus")) {
     });
     return_mainmenu_btn.addEventListener("click", () => {
         window.close();
-        window.location.href = "../index";
+        window.location.href = "../";
     });
 
 
@@ -547,12 +549,12 @@ function winner_calculator() {
         if (opp_stats.health <= 0 || opp_stats.stamina <= 0 || opp_stats.mana <= 0){
             localStorage.setItem("fightend", "true");
             localStorage.setItem("playerwin", "true");
-            window.location.href = "play_solo";
+            window.location.href = "../play_solo/";
         }
         if ((p1_stats.health <= 0 || p1_stats.stamina <= 0 || p1_stats.mana <= 0)&&(opp_stats.health <= 0 || opp_stats.stamina <= 0 || opp_stats.mana <= 0)){
             localStorage.setItem("fightend", "true");
             localStorage.setItem("tiefight", "true");
-            window.location.href = "play_solo";
+            window.location.href = "../play_solo/";
         }
     };
 
