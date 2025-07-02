@@ -83,7 +83,7 @@ let pc_attack_type = "";
 
 
 
-if (window.location.pathname.endsWith("/")) {
+if (window.location.pathname.endsWith("/Words-of-Power/")) {
     solo_btn.addEventListener("click", () => {
         localStorage.setItem("fightend", "false")
         localStorage.setItem("choicestory", "true");
@@ -95,7 +95,7 @@ if (window.location.pathname.endsWith("/")) {
         /**window.location.href = "./scenes/play_versus.html";**/
     });
 }
-else if (window.location.pathname.endsWith("play_solo/")) {
+else if (window.location.pathname.endsWith("/Words-of-Power/scenes/play_solo/")) {
     const fight_end = localStorage.getItem("fightend");
     const tied = JSON.parse(localStorage.getItem("tied"));
     
@@ -148,7 +148,7 @@ else if (window.location.pathname.endsWith("play_solo/")) {
     });
 
 }
-else if (window.location.pathname.endsWith("play_versus/")) {
+else if (window.location.pathname.endsWith("/Words-of-Power/scenes/play_versus/")) {
     const selected_versus = localStorage.getItem("choice1vpc");
     const physical_p1 = document.getElementById("physical-p1");
     const physical_p2 = document.getElementById("physical-p2");
