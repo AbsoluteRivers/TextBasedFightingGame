@@ -22,7 +22,8 @@ const opp_mana_num = document.getElementById("mana-bar-p2");
 
 const next_story_btn = document.getElementById("next");
 const story_start = document.getElementById("story-start");
-
+const retry_story = document.getElementById("retry");
+const exit_story = document.getElementById("exit-menu");
 
 let status_sets = {
     health: 100,
@@ -115,12 +116,29 @@ else if (window.location.pathname.endsWith("play_solo.html")) {
     
     if (fight_end === "true"){
         story_start.style.display = "none";
-        document.getElementById("retry").disabled = "false";
+        document.getElementById("retry-btn-div").style.display = "block";
+        document.getElementById("next-btn-div").style.display = "none";
         tied ? document.getElementById("tie-solo").style.display = "block" : story_ending();
         
         
     }
 
+
+    retry_story.addEventListener("click", ()=>{
+        localStorage.setItem("tied", "false")
+        localStorage.setItem("fight_end", "false");
+        document.getElementById("retry-btn-div").style.display = "none";
+        story_start.style.display = "block";
+        document.getElementById("next-btn-div").style.display = "block";
+        document.getElementById("tie-solo").style.display = "none";
+        document.getElementById("win-solo").style.display = "none";
+        document.getElementById("lost-solo").style.display = "none";
+    });
+
+    exit_story.addEventListener("click", () => {
+        window.close();
+        window.location.href = "../text_rpg.html";
+    });
 
     main_menu_btn.addEventListener("click", () => {
         window.close();
@@ -523,12 +541,12 @@ function winner_calculator() {
     if (story_mode === "true"){
         if (p1_stats.health <= 0 || p1_stats.stamina <= 0 || p1_stats.mana <= 0){
             localStorage.setItem("fightend", "true");
-            localStorage.setItem("playerwin", "true");
+            localStorage.setItem("playerwin", "false");
             window.location.href = "play_solo.html";
         }
         if (opp_stats.health <= 0 || opp_stats.stamina <= 0 || opp_stats.mana <= 0){
             localStorage.setItem("fightend", "true");
-            localStorage.setItem("playerwin", "false");
+            localStorage.setItem("playerwin", "true");
             window.location.href = "play_solo.html";
         }
         if ((p1_stats.health <= 0 || p1_stats.stamina <= 0 || p1_stats.mana <= 0)&&(opp_stats.health <= 0 || opp_stats.stamina <= 0 || opp_stats.mana <= 0)){
