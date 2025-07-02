@@ -137,7 +137,7 @@ body {
 }
 
 .versus-body{
-    background-image: url("./assets/imgs/gladi-free.png");
+    background-image: url("/Words-of-Power/assets/imgs/gladi-free.png");
     background-size: cover;
     
 }
@@ -276,7 +276,7 @@ body {
 }
 
 .solo-story-body {
-    background-image: url("./assets/imgs/gladiator-1.jpg");
+    background-image: url("/Words-of-Power/assets/imgs/gladiator-1.jpg");
     background-size: cover;
 }
 
