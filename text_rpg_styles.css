@@ -15,11 +15,33 @@
     --light-blue: #006fed;
 }
 
+* {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
 body {
     margin: 1rem 20px 1rem 20px;
+    height: 100%;
+}
+
+.main-menu-body {
+    height: 100vh;
+    display: block;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+    background-image: linear-gradient(to top right, 
+    var(--green-btn) 0%,  
+    var(--red-btn)25%,
+    var(--orange)50%,
+    var(--red-txt)75%,
+    var(--green-btn) 100%);
+    background-repeat: no-repeat;
 }
 
 #title-header {
+    top: 3rem;
     text-align: center;
 }
 
@@ -128,8 +150,12 @@ body {
 }
 
 #audio-play-pause {
+    position: absolute;
     background: none;
     border: none;
+    z-index: 11;
+    left: 1.5rem;
+    font-size: 1.2rem;
 }
 
 .stats-p1 {
@@ -247,4 +273,51 @@ body {
     border: 3px solid var(--black-txt);
     border-radius: 10px;
     z-index: 10;
+}
+
+.solo-story-body {
+    background-image: url("./assets/imgs/gladiator-1.jpg");
+    background-size: cover;
+}
+
+
+.story {
+    display: block;
+    background-color: rgba(255, 255, 255, 0.5);
+    text-align: center;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    margin: 2.5rem;
+}
+
+#next-btn-div{
+    display: block;
+    text-align: center;
+    justify-content: center;
+    align-content: center;
+    align-self: center;
+
+}
+
+#retry-btn-div {
+    display: none;
+    text-align: center;
+    justify-content: center;
+    align-content: center;
+    align-self: center;
+}
+
+
+.story-op {
+    visibility: hidden;
+}
+
+.story-end {
+    display: none;
+    background-color: rgba(255, 255, 255, 0.5);
+    text-align: center;
+    justify-content: center;
+    align-content: center;
+    margin: 3rem;
 }
