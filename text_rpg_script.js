@@ -327,7 +327,7 @@ else if (window.location.pathname.endsWith("/Words-of-Power/scenes/play_versus/"
     
     main_menu_btn.addEventListener("click", () => {
         window.close();
-        window.location.href = "../Words-of-Power/";
+        window.location.href = "/Words-of-Power/";
     });
 
 
@@ -544,17 +544,17 @@ function winner_calculator() {
         if (p1_stats.health <= 0 || p1_stats.stamina <= 0 || p1_stats.mana <= 0){
             localStorage.setItem("fightend", "true");
             localStorage.setItem("playerwin", "false");
-            window.location.href = "scenes/play_solo";
+            window.location.href = "../play_solo/";
         }
         if (opp_stats.health <= 0 || opp_stats.stamina <= 0 || opp_stats.mana <= 0){
             localStorage.setItem("fightend", "true");
             localStorage.setItem("playerwin", "true");
-            window.location.href = "scenes/play_solo";
+            window.location.href = "../play_solo/";
         }
         if ((p1_stats.health <= 0 || p1_stats.stamina <= 0 || p1_stats.mana <= 0)&&(opp_stats.health <= 0 || opp_stats.stamina <= 0 || opp_stats.mana <= 0)){
             localStorage.setItem("fightend", "true");
             localStorage.setItem("tiefight", "true");
-            window.location.href = "scenes/play_solo";
+            window.location.href = "../play_solo/";
         }
     };
 
