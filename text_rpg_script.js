@@ -139,12 +139,12 @@ else if (window.location.pathname.endsWith("/Words-of-Power/scenes/play_solo/"))
 
     exit_story.addEventListener("click", () => {
         window.close();
-        window.location.href = "Words-of-Power/";
+        window.location.href = "../../";
     });
 
     main_menu_btn.addEventListener("click", () => {
         window.close();
-        window.location.href = "Words-of-Power/";
+        window.location.href = "../../";
     });
 
 }
@@ -327,7 +327,7 @@ else if (window.location.pathname.endsWith("/Words-of-Power/scenes/play_versus/"
     
     main_menu_btn.addEventListener("click", () => {
         window.close();
-        window.location.href = "Words-of-Power/";
+        window.location.href = "../../";
     });
 
 
@@ -366,7 +366,7 @@ else if (window.location.pathname.endsWith("/Words-of-Power/scenes/play_versus/"
     });
     return_mainmenu_btn.addEventListener("click", () => {
         window.close();
-        window.location.href = "Words-of-Power/";
+        window.location.href = "../../";
     });
 
 
